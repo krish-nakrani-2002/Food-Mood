@@ -4,7 +4,7 @@ import FoodData from '../Data/FoodData'
 
 function FoodIteams() {
   return (
-    <div>
+    <div className='flex flex-wrap gap-12 justify-center lg:justify-start mx-6 my-10'>
       {FoodData.map((food) => {
         return (
         <FoodCard 

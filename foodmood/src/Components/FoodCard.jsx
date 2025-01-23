@@ -14,7 +14,7 @@ const FoodCard = ({id, name, price, desc, img, rating}) => {
             <span className='text-green-500'>${price}</span>
         </div>
 
-        <p className='text-sm font-normal'>{desc}</p>
+        <p className='text-sm font-normal'>{desc.slice(0, 60)}...</p>
 
         <div className='flex justify-between'>
             <span className='flex justify-center items-center gap-1'>
