@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { addTOCart } from '../Redux/Slices/CartSlice';
 
-const FoodCard = ({id, name, price, desc, img, rating}) => {
+const FoodCard = ({id, name, price, desc, img, rating, handToast}) => {
 
   const dispatch = useDispatch();
 
@@ -27,8 +27,11 @@ const FoodCard = ({id, name, price, desc, img, rating}) => {
                 <span>{rating}</span>
             </span>
             <button onClick={() => {
-              dispatch(addTOCart({id, name, price, rating, img, qty: 1}));
-            }} className='p-1 text-white bg-green-500 hover:bg-green-600 rounded-lg text-sm'>Add to cart</button>
+              dispatch(addTOCart({id, name, price, rating, img, qty: 1})
+            );
+              handToast( name );
+            }} 
+            className='p-1 text-white bg-green-500 hover:bg-green-600 rounded-lg text-sm'>Add to cart</button>
         </div>
     </div>
   )
