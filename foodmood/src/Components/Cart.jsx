@@ -9,6 +9,8 @@ const Cart = () => {
   const [activeCart, setActiveCart] = useState(true);
 
   const cartItems = useSelector((state) => state.cart.cart);
+  const totalQty = cartItems.reduce((totalQty, item) => totalQty + item.qty, 0);
+  const totalAmount = cartItems.reduce((totalAmount, item) => totalAmount + item.price * item.qty, 0);
 
   return (
   <>
@@ -34,15 +36,20 @@ const Cart = () => {
 
 
         <div className='absolute bottom-0'> 
-            <h3 className='font-semibold text-gray-800'>Items: </h3>
-            <h3 className='font-semibold text-gray-800'>Total Amount: </h3>
+            <h3 className='font-semibold text-gray-800'>Items: {totalQty} </h3>
+            <h3 className='font-semibold text-gray-800'>Total Amount: ₹{totalAmount} </h3>
             <hr className='w-[90vw] lg:w-[18vw] my-2' />
             <button className='bg-green-500 font-bold text-white px-3 py-2 rounded-lg w-[90vw] lg:w-[18vw] mb-5'>Checkout
             </button>
         </div>
   </div>
 
-        <FaShoppingCart onClick={() => setActiveCart(!activeCart)} className='rounded-full bg-white shadow-md text-5xl p-3 fixed bottom-4 right-4 cursor-pointer' />
+        <FaShoppingCart 
+         onClick={() => setActiveCart(!activeCart)} 
+         className={`rounded-full bg-white shadow-md text-5xl p-3 fixed bottom-4 right-4 ${
+            totalQty > 0 && "animate-bounce delay-500 transition-all"
+         }`} 
+         />
   </>
   )
 }
