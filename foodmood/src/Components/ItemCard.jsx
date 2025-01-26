@@ -2,7 +2,7 @@ import React from 'react'
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../Redux/Slices/CartSlice';
+import { removeFromCart, incrementQty, decrementQty } from '../Redux/Slices/CartSlice';
 
 const ItemCard = ({ id, name, price, img, qty }) => {
 
@@ -19,9 +19,13 @@ const ItemCard = ({ id, name, price, img, qty }) => {
           <div className='flex justify-between'>
             <span className='text-green-500 font-bold'>₹{price}</span>
             <div className='flex gap-2 items-center justify-center absolute right-7'>
-          <AiOutlinePlus className='border-2 border-gray-600 text-gray-600 hover:text-white hover:bg-green-500 rounded-md p-1 text-xl transition-all ease-linear cursor-pointer hover:border-none' /> 
+          <AiOutlineMinus 
+           onClick={() => qty > 1 ? dispatch(decrementQty({id})) : (qty = 1)}
+           className='border-2 border-gray-600 text-gray-600 hover:text-white hover:bg-green-500 rounded-md p-1 text-xl transition-all ease-linear cursor-pointer hover:border-none' />
           <span>{qty}</span>
-          <AiOutlineMinus className='border-2 border-gray-600 text-gray-600 hover:text-white hover:bg-green-500 rounded-md p-1 text-xl transition-all ease-linear cursor-pointer hover:border-none' />
+          <AiOutlinePlus
+           onClick={() => qty >= 1 ? dispatch(incrementQty({id})) : (qty = 1)}
+           className='border-2 border-gray-600 text-gray-600 hover:text-white hover:bg-green-500 rounded-md p-1 text-xl transition-all ease-linear cursor-pointer hover:border-none' /> 
             </div>
           </div>
         </div>
