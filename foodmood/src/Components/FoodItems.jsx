@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 function FoodIteams() {
 
   const category = useSelector((state) => state.category.category);
+  const search = useSelector((state) => state.search.search);
 
   const handToast = ( name ) => toast.success( `Added ${name}`,);
   
@@ -17,9 +18,9 @@ function FoodIteams() {
       {
         FoodData.filter((food) => {
           if (category === "All") {
-            return food;
+            return food.name.toLowerCase().includes(search.toLowerCase());
           } else {
-            return category === food.category;
+            return category === food.category && food.name.toLowerCase().includes(search.toLowerCase());
           }
         }).map((food) => (
           <FoodCard 
@@ -34,7 +35,7 @@ function FoodIteams() {
           />
         ))
         }
-        
+
     </div>
     </>
   )
