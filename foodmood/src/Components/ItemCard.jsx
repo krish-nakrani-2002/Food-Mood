@@ -15,7 +15,7 @@ const ItemCard = ({ id, name, price, img, qty }) => {
         onClick={() => {
           dispatch(removeFromCart({id, name, price, img, qty}));
           toast(`${name} Removed!`, {
-            icon: '👋',
+            icon: '❌',
           });
         }}
         className='absolute right-7 text-gray-600 cursor-pointer' />
